@@ -14,7 +14,7 @@ const Contact = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/contact",
+        "https://notes-app-3v4s.onrender.com/api/contact",
         formData
       );
       console.log(response);
