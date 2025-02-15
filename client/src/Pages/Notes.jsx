@@ -14,7 +14,7 @@ const Notes = () => {
     const fetchNotes = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:3000/api/notes", {
+        const response = await axios.get("https://notes-app-3v4s.onrender.com/api/notes", {
           headers: { "x-auth-token": token },
         });
         setNotes(response.data);
@@ -45,7 +45,7 @@ const Notes = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/notes/add",
+        "https://notes-app-3v4s.onrender.com/api/notes/add",
         { title, content },
         {
           headers: { "x-auth-token": token },
@@ -77,7 +77,7 @@ const Notes = () => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/notes/update/${currentNoteId}`,
+        `https://notes-app-3v4s.onrender.com/api/notes/update/${currentNoteId}`,
         { title, content },
         {
           headers: { "x-auth-token": token },
@@ -98,7 +98,7 @@ const Notes = () => {
   const handleDeleteNote = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`http://localhost:3000/api/notes/delete/${id}`, {
+      await axios.delete(`https://notes-app-3v4s.onrender.com/api/notes/delete/${id}`, {
         headers: { "x-auth-token": token },
       });
       setNotes(notes.filter((note) => note._id !== id));
