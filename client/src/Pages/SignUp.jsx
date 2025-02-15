@@ -1,7 +1,7 @@
 // src/pages/SignUp.js
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -75,9 +75,9 @@ const SignUp = () => {
         </form>
         <div className="text-center mt-2">
           Already have account
-          <a href="/signin" className="ms-2">
+          <Link to="/signin" className="ms-2">
             Login
-          </a>
+          </Link>
         </div>
       </div>
     </div>
