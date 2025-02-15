@@ -1,7 +1,7 @@
 // src/pages/SignIn.js
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
 import { useAuth } from "../Components/ContextProvider";
 
 const SignIn = () => {
@@ -69,9 +69,9 @@ const SignIn = () => {
           </form>
           <div className="text-center mt-2">
             Don't have an account?
-            <a href="/signup" className="ms-2">
+            <Link to="/signup" className="ms-2">
               SignUp
-            </a>
+            </Link>
           </div>
         </div>
       </div>
