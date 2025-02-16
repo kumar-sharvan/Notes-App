@@ -50,7 +50,7 @@ const Navbar = ({ setSearchQuery }) => {
             {!user ? (
               <>
                 <li className="nav-item">
-                  <Link to="/signin" className="btn btn-primary fw-bold me-2">
+                  <Link to="/signin" className="btn btn-primary fw-bold me-2 mb-2">
                     Login
                   </Link>
                 </li>
