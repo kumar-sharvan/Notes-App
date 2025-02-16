@@ -4,20 +4,38 @@ import { useAuth } from "./ContextProvider";
 
 const Navbar = ({ setSearchQuery }) => {
   const { user, logout } = useAuth();
-  const navigate = useNavigate(); // useNavigate inside a Router context
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    navigate("/"); // Redirect after logout
+    navigate("/");
   };
 
   return (
-    <div>
-      <nav className="navbar bg-dark">
-        <div className="container-fluid d-flex justify-content-between align-items-center">
-          <a className="navbar-brand text-light">Notes Taking App</a>
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div className="container">
+        {/* Brand Logo */}
+        <Link className="navbar-brand fw-bold" to="/">
+          📖 Notes App
+        </Link>
 
-          <form className="d-flex mx-auto">
+        {/* Toggle Button for Mobile */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        {/* Navbar Content */}
+        <div className="collapse navbar-collapse justify-content-between" id="navbarNav">
+          {/* Search Bar (Centered on Larger Screens) */}
+          <form className="d-flex mx-auto my-2 my-lg-0">
             <input
               className="form-control form-control-sm me-2"
               type="search"
@@ -27,30 +45,37 @@ const Navbar = ({ setSearchQuery }) => {
             />
           </form>
 
-          <div className="d-flex align-items-center">
+          {/* Right Section (Login, Contact, or User Info) */}
+          <ul className="navbar-nav ms-auto">
             {!user ? (
               <>
-                <Link to="/signin" className="btn btn-primary fw-bold me-2">
-                  Login
-                </Link>
-                <Link to="/contact" className="btn btn-warning fw-bold">
-                  Contact
-                </Link>
+                <li className="nav-item">
+                  <Link to="/signin" className="btn btn-primary fw-bold me-2">
+                    Login
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/contact" className="btn btn-warning fw-bold">
+                    Contact
+                  </Link>
+                </li>
               </>
             ) : (
               <>
-                <span className="text-warning me-3 fw-bold fs-5">
-                  {user.username}
-                </span>
-                <button className="btn btn-danger" onClick={handleLogout}>
-                  Logout
-                </button>
+                <li className="nav-item d-flex align-items-center">
+                  <span className="text-warning me-3 fw-bold fs-5">
+                    {user.username}
+                  </span>
+                  <button className="btn btn-danger" onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
               </>
             )}
-          </div>
+          </ul>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
