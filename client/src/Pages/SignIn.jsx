@@ -77,7 +77,7 @@ const SignIn = () => {
               {loading ? "Logging in..." : "Login"}
             </button>
           </form>
-          {loading && <div className="text-center mt-3">Loading...</div>}
+          {/* {loading && <div className="text-center mt-3">Loading...</div>} */}
           <div className="text-center mt-2">
             Don't have an account?
             <a href="/signup" className="ms-2">
