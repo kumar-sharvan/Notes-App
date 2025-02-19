@@ -1,20 +1,22 @@
 // src/pages/SignIn.js
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate , Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../Components/ContextProvider";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
-        "https://notes-app-3v4s.onrender.com/api/users/signin",
+        "http://localhost:3000/api/users/signin",
         {
           email,
           password,
@@ -25,11 +27,13 @@ const SignIn = () => {
       );
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
-      login(response.data.user); // Ensure response.data.user includes name
+      login(response.data.user);
       navigate("/notes");
     } catch (err) {
       alert(err.response.data.msg);
       console.log(err.response);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -48,6 +52,7 @@ const SignIn = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
 
@@ -60,18 +65,24 @@ const SignIn = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                disabled={loading}
               />
             </div>
 
-            <button type="submit" className="btn btn-primary w-100">
-              Login
+            <button
+              type="submit"
+              className="btn btn-primary w-100"
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "Login"}
             </button>
           </form>
+          {loading && <div className="text-center mt-3">Loading...</div>}
           <div className="text-center mt-2">
             Don't have an account?
-            <Link to="/signup" className="ms-2">
+            <a href="/signup" className="ms-2">
               SignUp
-            </Link>
+            </a>
           </div>
         </div>
       </div>
