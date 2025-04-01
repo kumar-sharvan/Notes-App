@@ -1,30 +1,36 @@
 // src/pages/SignUp.js
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(
-        "https://notes-app-3v4s.onrender.com/api/users/signup",
+        "http://localhost:3000/api/users/signup",
         {
           username,
           email,
           password,
         }
       );
+
       alert(`Signup Successful`);
       navigate("/signin");
+
       console.log(response);
     } catch (err) {
       console.log(err.response);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -69,15 +75,25 @@ const SignUp = () => {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary w-100">
-            Sign Up
+          <button
+            type="submit"
+            className="btn btn-primary w-100"
+            disabled={loading}
+          >
+            {loading ? (
+              <div className="spinner-border spinner-border-sm" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            ) : (
+              "Sign Up"
+            )}
           </button>
         </form>
         <div className="text-center mt-2">
-          Already have account
-          <Link to="/signin" className="ms-2">
+          Already have an account?
+          <a href="/signin" className="ms-2">
             Login
-          </Link>
+          </a>
         </div>
       </div>
     </div>
