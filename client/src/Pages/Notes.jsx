@@ -127,6 +127,7 @@ const Notes = () => {
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                autoFocus
               />
             </div>
             <div className="col-md-5">
