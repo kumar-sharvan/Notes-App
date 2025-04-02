@@ -15,7 +15,7 @@ const SignUp = () => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/users/signup",
+        "https://notes-app-3v4s.onrender.com/api/users/signup",
         {
           username,
           email,
