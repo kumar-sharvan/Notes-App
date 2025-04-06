@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import { FaPlusCircle } from "react-icons/fa";
 import Footer from "./Footer";
+import home from "../assets/home-right.png";
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
 
         <div className="mt-4">
           <img
-            src="https://images.unsplash.com/photo-1519337265831-281ec6cc8514"
+            src={home}
             alt="Notebook Illustration"
             className="img-fluid rounded shadow"
             style={{ width: "100%", maxWidth: "600px", height: "auto" }}
